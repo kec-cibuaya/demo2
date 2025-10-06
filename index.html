@@ -668,43 +668,49 @@
         });
     }
 
-    // 3. Navigation link smooth scrolling & close mobile menu
+    // 3. Navigation link smooth scrolling & close mobile menu (LOGIKA DIPERBAIKI)
     document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
-            // Cek apakah link adalah bagian dari dropdown Layanan (Desktop)
-            if (this.closest('.group') && !this.classList.contains('mobile-nav-link')) {
-                // Jangan cegah default jika itu link dropdown desktop yang tidak punya href="#".
-                // Tapi untuk link submenu yang punya href="#layanan" atau #lain, tetap jalankan scroll
-                const targetId = this.getAttribute('href').substring(1);
-                 if (targetId) {
-                     e.preventDefault();
-                     scrollToSection(targetId);
-                 }
-                 // Tetap biarkan menu desktop terbuka (group-hover)
-                 return;
+            
+            const targetId = this.getAttribute('href')?.substring(1);
+
+            // Jika href tidak valid atau mengarah ke link eksternal (target="_blank"), biarkan default
+            if (!targetId || this.getAttribute('target') === '_blank') {
+                // Biarkan link eksternal atau link menu desktop utama berjalan normal
+                return;
             }
 
-            const targetId = this.getAttribute('href').substring(1);
+            // Mencegah navigasi default untuk mengaktifkan smooth scroll
+            e.preventDefault(); 
+            
             if (targetId) {
-                e.preventDefault();
                 scrollToSection(targetId);
                 
-                // Close mobile menu if open
+                // --- Logika Penutupan Menu Mobile ---
                 const mobileMenu = document.getElementById('mobile-menu');
-                if (!mobileMenu.classList.contains('hidden') && this.classList.contains('mobile-nav-link')) {
+                
+                // Cek apakah ini tautan di dalam menu mobile
+                if (!mobileMenu.classList.contains('hidden')) {
+                    
+                    // 1. Tutup menu utama mobile
                     mobileMenu.classList.add('hidden');
-                    // Tambahan: Tutup juga dropdown AlpineJS jika ada
-                    const alpineDropdown = this.closest('[x-data]');
-                    if (alpineDropdown && alpineDropdown.__x) {
-                        alpineDropdown.__x.$data.open = false;
+                    
+                    // 2. Tutup juga dropdown AlpineJS (Layanan) jika link diklik dari dalamnya
+                    // Cari elemen terdekat yang memiliki data AlpineJS (x-data)
+                    const alpineDropdownContainer = this.closest('[x-data]'); 
+                    
+                    // Cek apakah AlpineJS sudah diinisialisasi pada elemen tersebut dan memiliki properti 'open'
+                    if (alpineDropdownContainer && alpineDropdownContainer.__x) {
+                        // Secara manual set variabel 'open' AlpineJS menjadi false
+                        alpineDropdownContainer.__x.$data.open = false; 
                     }
                 }
             }
         });
     });
 
-    // 4. Filter pegawai functionality (Improved from Code 1)
-    function filterPegawai(kategori, event) {
+    // 4. Filter pegawai functionality (PNS, Honorer, Kontrak)
+    function filterPegawai(kategori) {
         const cards = document.querySelectorAll('.pegawai-card');
         const buttons = document.querySelectorAll('.filter-btn');
         
@@ -733,9 +739,12 @@
         });
     }
 
-    
+    // Initialize filter to 'semua' when the page loads
+    window.onload = function() {
+        filterPegawai('semua');
+    };
 
-    // 6. Navbar scroll effect (From Code 1)
+    // 6. Navbar scroll effect
     window.addEventListener('scroll', function() {
         const nav = document.getElementById('main-nav');
         if (window.scrollY > 100) {
@@ -745,10 +754,7 @@
         }
     });
 
-
-
-
- // 7. Scroll To Top Button Logic (BARU)
+    // 7. Scroll To Top Button Logic
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');
     const rootElement = document.documentElement;
 
@@ -761,7 +767,6 @@
         }
     }
 
-
     function scrollToTop() {
         rootElement.scrollTo({
             top: 0,
@@ -772,7 +777,7 @@
     // Attach event listeners
     document.addEventListener('scroll', handleScroll);
     scrollToTopBtn.addEventListener('click', scrollToTop);
-
+</script>
 
 </script>
 </body>
