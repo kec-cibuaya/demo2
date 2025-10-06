@@ -22,32 +22,34 @@
             background-color: #f3f4f6; /* bg-gray-100 */
         }
         
-        /* Custom Background & Hover Effects */
-        .hero-image-bg {
-            /* Ganti URL_FOTO_ANDA_DISINI dengan link foto kantor/wilayah Anda */
-            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhomzrz6M10-2cx6PTCBsqqXx9esBb4-WStk8BoN8JRyZ20yY0zjTvL4CKbxCPShSif60FzboYZTWUgFW4QvjJNvdzaelL7rgGwXRT3kvmzs_Rbs1nbhPcAkiof4Cu1MwVKN4KSB2ldraD3PTiwQ7FoOEkPHNjNwbN03vANUlNgwg2bZwNJpi7MHAM1edA/s1156/WhatsApp%20Image%202025-10-04%20at%2020.41.46.jpeg'); 
-            background-size: cover; 
-            background-position: center; 
-            position: relative;
-        }
-        
-        /* Overlay hitam semi-transparan (40%) untuk menjaga kontras teks */
-        .hero-image-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.4); 
-            z-index: 1;
-        }
+       /* NEW SLIDER CSS */
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Semua gambar dimulai tersembunyi */
+    transition: opacity 1.5s ease-in-out; /* Transisi untuk efek fade */
+    z-index: 1;
+}
 
-        /* Memastikan konten (teks dan tombol) berada di atas overlay */
-        .hero-image-bg > div {
-            position: relative;
-            z-index: 2;
-        }
+.slider-image.active {
+    opacity: 1; /* Gambar aktif terlihat */
+}
+
+/* NEW OVERLAY CSS (Used in HTML) */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4); /* Overlay 40% */
+    z-index: 2; /* Di atas gambar slider, di bawah konten hero */
+}
 
         .card-hover { transition: all 0.3s ease; }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1); }
@@ -111,9 +113,11 @@
             
             <div class="flex items-center">
                 <a href="#beranda" class="flex-shrink-0 flex items-center">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgm5fR_mXuAVyfw3-Y2EdnvygFpqQ0uY40alDwuQOEglm_OrLU_l9sz0MJlTFdQN361Sh1HXKPaGmGbfTMDXszygTmw1o1N-sgmjmrx60ncfG4bvqpZUTzJhKKeFwMXnH5GtRAl9XhmquVUs__fnMXNP78-H7Xxe0hflfwlGRLr6PsX1DCQwAW9KYMf330/s942/Screenshot_20251003_193213_Canva.jpg" alt="Logo Kecamatan Cibuaya" class="h-16 w-auto">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilwFljcMpweC9h-vA9KmFCWyYA3H3r1qEtrnUOVpQQPXZC-kkDLlSZJ0PS2gwgco-4suFUwT0LX2TYxUu_Ukju0uNxY0S7GK9r09oT_kcD3hStRNMHa5M0qjifm0aQW04EEUpzhJhU6Ira7y7AbaEJ3E9eRhGW-EkAva4xWofFNOnL5nm4FPVN3J646gM/s1512/Screenshot%202025-10-06%20173309.png" alt="Logo Kecamatan Cibuaya" class="h-16 w-auto">
                     </a>
             </div>
+
+          
 
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#beranda" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">Beranda</a>
@@ -153,8 +157,11 @@
  <a href="https://www.pantaisedari.com/" target="_blank" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">Wisata</a>
             
                 <a href="https://jdih.karawangkab.go.id/" target="_blank" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">JDIH</a>
-            </div>
             
+            
+<a href="https://ppid.karawangkab.go.id/" target="_blank" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">PPID</a>
+            </div>
+
             <div class="md:hidden flex items-center">
                 <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-600 p-2 rounded-md transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -201,16 +208,27 @@
     </div>
 </nav>
 
-<section id="beranda" class="hero-image-bg text-white py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="beranda" class="relative text-white py-20 overflow-hidden min-h-[80vh] flex items-center">
+    <div id="image-slider" class="absolute inset-0 w-full h-full">
+        
+        <div class="slider-image active" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEig_THzyOCXyFXYeqDmW2pqr91Q26ZUn1ertFOIpwLgB1PcJkovpVJ_j_2qtQFA55QsG6igWZVYDapaN2VzIMfXrWeRsHgYRJebRugY-i31RdIH_66y93nC0QMs538UVESKW5zjvBFQ88V5dsO4GRR9O0JDimQ9_40mUfvy2n3rSvRudtLkLgFFRtCCzsA/s1156/ae8b1c83-7abc-40dc-ab31-fb1d2bd17d37.jpg');"></div>
+        
+        <div class="slider-image" style="background-image: url('https://karawangkab.go.id/sites/default/files/styles/mslider_bg/public/SLIDE%20HARI%20TNI.jpg?itok=XN0C1dWr');"></div>
+        
+        <div class="slider-image" style="background-image: url('https://karawangkab.go.id/sites/default/files/styles/mslider_bg/public/SLIDE%20HARI%20BATIK%20NASIONAL.jpg?itok=U6u1uoVC');"></div>
+        
+<div class="slider-image" style="background-image: url('https://karawangkab.go.id/sites/default/files/styles/mslider_bg/public/SLIDE%20HARI%20KESAKTIAN%20PANCASILA.png?itok=_SHH8JkS');"></div>
+
+
+        <div class="hero-overlay"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-30 w-full">
         <div class="grid md:grid-cols-3 gap-8 items-center">
-            <div class="md:col-span-2 text-center md:text-left">
+            <div class="md:col-span-2 text-start md:text-left">
                 <marquee behavior="scroll" direction="left" scrollamount="10" class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
                     Selamat datang di Website Resmi Kecamatan Cibuaya
                 </marquee>
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight hidden">
-                    Selamat datang di Website Resmi <br class="hidden lg:inline">Kecamatan Cibuaya
-                </h1>
                 <p class="text-xl md:text-2xl mb-8 opacity-90">Melayani dengan Dedikasi, Membangun dengan Integritas</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                     <button onclick="scrollToSection('layanan')" class="bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold shadow-md hover:bg-gray-100 transition-colors">
@@ -245,7 +263,6 @@
         </div>
     </div>
 </section>
-
 <section id="layanan" class="py-16 bg-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
@@ -473,15 +490,7 @@
                 <button onclick="filterPegawai('semua')" data-kategori="semua" class="filter-btn bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                     Semua Pegawai
                 </button>
-                <button onclick="filterPegawai('pns')" data-kategori="pns" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
-                    PNS
-                </button>
-                <button onclick="filterPegawai('honorer')" data-kategori="honorer" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
-                    Honorer
-                </button>
-                <button onclick="filterPegawai('kontrak')" data-kategori="kontrak" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
-                    Kontrak
-                </button>
+             
 
             <div id="pegawai-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <div class="pegawai-card bg-white border border-gray-200 rounded-lg p-4 card-hover" data-kategori="pns">
@@ -500,7 +509,7 @@
                     </div>
                     <h3 class="font-semibold text-gray-900 text-center mb-1">Usman Apandi, SM</h3>
                     <p class="text-blue-600 text-sm text-center mb-1">Bendahara Pengeluaran</p>
-                    
+            
                     <p class="text-gray-600 text-xs text-center">NIP: 197709162009011003</p>
                 </div>
 
@@ -509,8 +518,8 @@
                         <span class="text-white">👨‍💻</span>
                     </div>
                     <h3 class="font-semibold text-gray-900 text-center mb-1">Januar Ibrahim, S.I.P</h3>
-                    <p class="text-orange-600 text-sm text-center mb-1">Staff Kasi Pem</p>
-                    <p class="text-gray-500 text-xs text-center mb-2">Penata Kelola Pemerintahan</p>
+		    <p class="text-orange-600 text-sm text-center mb-1">Staff Kasi Pem</p>
+                    <p class="text-blue-600 text-sm text-center mb-1">Penata Kelola Pemerintahan</p>
                     
                     <p class="text-gray-600 text-xs text-center">NIP: 199701292025051004</p>
                 </div>
@@ -519,7 +528,7 @@
                     <div class="w-12 h-12 bg-purple-500 rounded-full mx-auto mb-3 flex items-center justify-center">
                         <span class="text-white">👩‍⚖</span>
                     </div>
-                    <h3 class="font-semibold text-gray-900 text-center mb-1">Putri Amalia, S.Kom</h3>
+		    <h3 class="font-semibold text-gray-900 text-center mb-1">Putri Amalia, S.Kom</h3>
                     <p class="text-orange-600 text-sm text-center mb-1">Staff Kasubag UPP</p>
                     <p class="text-gray-500 text-xs text-center mb-2">Penata Kelola Sistem & TI</p>
                     <p class="text-gray-600 text-xs text-center">NIP: 199807142025052005</p>
@@ -595,7 +604,6 @@
                     <p class="text-gray-500 text-xs text-center mb-2">PNS - Golongan II/c</p>
                     <p class="text-gray-600 text-xs text-center">NIP: 199408151999032008</p>
                 </div>
-
             
             </div>
         </div>
@@ -798,6 +806,41 @@
             behavior: 'smooth'
         });
     }
+
+// 8. Auto Image Slider Functionality
+let slideIndex = 0;
+const slides = document.getElementsByClassName('slider-image');
+const totalSlides = slides.length;
+
+function showSlides() {
+    // Hide all slides
+    for (let i = 0; i < totalSlides; i++) {
+        slides[i].classList.remove('active');
+    }
+
+    // Increment index and loop back to the first slide
+    slideIndex++;
+    if (slideIndex > totalSlides) {
+        slideIndex = 1;
+    }
+
+    // Show the current slide (index is 1-based, array is 0-based)
+    slides[slideIndex - 1].classList.add('active');
+    
+    // Call showSlides again after 7 seconds (7000 milliseconds)
+    // Adjust the time (e.g., 5000 for 5 seconds)
+    setTimeout(showSlides, 7000); 
+}
+
+// Start the slider as soon as the window loads (or after a slight delay)
+window.addEventListener('load', () => {
+    // Ensure the initial 'active' image is set before starting the loop
+    if (totalSlides > 0) {
+        slides[0].classList.add('active'); // Set the first image as active initially
+        slideIndex = 1;
+        setTimeout(showSlides, 7000); // Start the transition after the first image is displayed for full time
+    }
+});
 
     // Attach event listeners
     document.addEventListener('scroll', handleScroll);
