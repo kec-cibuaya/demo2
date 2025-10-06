@@ -51,7 +51,7 @@
 
         .card-hover { transition: all 0.3s ease; }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1); }
- /* Floating WA Button Style (Adopted from Code 2) */
+        /* Floating WA Button Style (Adopted from Code 2) */
         .wa-float {
             position: fixed;
             right: 20px;
@@ -59,7 +59,7 @@
             background: #25D366;
             border-radius: 999px;
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-            z-index: 40;
+            z-index: 50; /* Z-index lebih tinggi dari ScrollToTop */
             transition: transform 0.3s;
         }
         .wa-float:hover {
@@ -75,7 +75,7 @@
             text-decoration: none;
         }
 
-/* CSS BARU untuk SCROLL TO TOP BUTTON */
+        /* CSS BARU untuk SCROLL TO TOP BUTTON */
         #scrollToTopBtn {
             position: fixed;
             bottom: 90px; /* Geser 70px ke atas dari WA button (bottom: 20px) */
@@ -116,17 +116,29 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#beranda" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 font-medium transition-colors">Beranda</a>
-                <a href="#profil" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 font-medium transition-colors">Profil</a>
+                <a href="#beranda" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">Beranda</a>
                 
                 <div class="relative group">
-                    <a href="#layanan" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 font-medium transition-colors flex items-center">
+                    <a href="#profil" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm flex items-center whitespace-nowrap">
+                        Profil
+                        <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    
+                    <div class="absolute z-50 hidden group-hover:block w-56 bg-white rounded-lg shadow-xl py-2 mt-0.5 border border-gray-100">
+                        <a href="#profil" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 nav-link">Kecamatan</a>
+                        <a href="#struktur" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 nav-link">Struktur Organisasi</a>
+                        <a href="#pegawai" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 nav-link">Daftar Pegawai</a>
+                        <a href="#kontak" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 nav-link">Kontak & Lokasi</a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="#layanan" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm flex items-center whitespace-nowrap">
                         Layanan
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </a>
                     
                     <div class="absolute z-50 hidden group-hover:block w-56 bg-white rounded-lg shadow-xl py-2 mt-0.5 border border-gray-100">
-                     
+                        
                         <a href="https://cekpbb.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Cek PBB Online</a>
                         <a href="https://edukcapil.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Edukcapil</a>
                         <a href="https://infoloker.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Info Loker</a>
@@ -134,16 +146,12 @@
                         <a href="https://tangkar.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Pengaduan Publik</a>
 
 
-
-
-
-                 
                     </div>
                 </div>
-                <a href="#struktur" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 font-medium transition-colors">Struktur</a>
-                <a href="#pegawai" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 font-medium transition-colors">Pegawai</a>
-                <a href="#berita-pengumuman" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 font-medium transition-colors">Berita & Info</a>
-                <a href="#kontak" class="nav-link text-gray-700 hover:text-blue-600 px-3 py-2 font-medium transition-colors">Kontak</a>
+                
+                <a href="#berita-pengumuman" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">Berita & Info</a>
+ <a href="https://www.pantaisedari.com/" target="_blank" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">Wisata</a>
+            
                 <a href="https://jdih.karawangkab.go.id/" target="_blank" class="text-blue-600 border border-blue-600 rounded-lg px-3 py-1.5 font-semibold hover:bg-blue-50 transition-colors text-sm">JDIH</a>
             </div>
             
@@ -160,31 +168,38 @@
     <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a href="#beranda" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
-            <a href="#profil" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Profil</a>
             
+            <div x-data="{ open: false }" class="border-b border-gray-100">
+                <button @click="open = !open" class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">
+                    Profil
+                    <svg :class="{'rotate-180': open}" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div x-show="open" class="pl-6 pb-2 space-y-1 transition-all duration-300 ease-in-out">
+                    <a href="#profil" class="block px-3 py-1 text-sm text-gray-600 hover:text-blue-600 mobile-nav-link">Kecamatan (Visi & Misi)</a>
+                    <a href="#struktur" class="block px-3 py-1 text-sm text-gray-600 hover:text-blue-600 mobile-nav-link">Struktur Organisasi</a>
+                    <a href="#pegawai" class="block px-3 py-1 text-sm text-gray-600 hover:text-blue-600 mobile-nav-link">Daftar Pegawai</a>
+                    <a href="#kontak" class="block px-3 py-1 text-sm text-gray-600 hover:text-blue-600 mobile-nav-link">Kontak & Lokasi</a>
+                </div>
+            </div>
             <div x-data="{ open: false }" class="border-b border-gray-100">
                 <button @click="open = !open" class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">
                     Layanan
                     <svg :class="{'rotate-180': open}" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div x-show="open" class="pl-6 pb-2 space-y-1 transition-all duration-300 ease-in-out">
-                                           <a href="https://cekpbb.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Cek PBB Online</a>
-                        <a href="https://edukcapil.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Edukcapil</a>
-                        <a href="https://infoloker.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Info Loker</a>
-                        <a href="#layanan" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 nav-link">Kecamatan</a>
-                        <a href="https://tangkar.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Pengaduan Publik</a>
-
+                    <a href="https://cekpbb.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Cek PBB Online</a>
+                    <a href="https://edukcapil.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Edukcapil</a>
+                    <a href="https://infoloker.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Info Loker</a>
+                    <a href="#layanan" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 mobile-nav-link">Kecamatan</a>
+                    <a href="https://tangkar.karawangkab.go.id/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600">Pengaduan Publik</a>
                 </div>
             </div>
             
-            <a href="#struktur" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Struktur</a>
-            <a href="#pegawai" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Pegawai</a>
             <a href="#berita-pengumuman" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Berita & Info</a>
-            <a href="#kontak" class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium">Kontak</a>
             <a href="https://jdih.karawangkab.go.id" target="_blank" rel="noopener noreferrer" class="block px-3 py-2 text-blue-600 hover:bg-blue-50 font-medium">JDIH</a>
         </div>
     </div>
-    </nav>
+</nav>
 
 <section id="beranda" class="hero-image-bg text-white py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -323,7 +338,7 @@
     <article class="bg-white rounded-xl shadow-lg border border-gray-100 card-hover overflow-hidden">
         <img src="https://karawangkab.bps.go.id/_next/image?url=https%3A%2F%2Fweb-api.bps.go.id%2Fcover.php%3Ff%3D%2B%2BgJ7ZC9gocU8X1Y5cvA%2BkxqYW1xdTI2QUhhOFFiZnphazJKZTJxdTRMUVhsSDNNdENmZnNTOVltbU0zRk9ycGQvcGNmdjhrNjlreDVaeUZSMVNKNkNtaGlaWVpLenRWNTltUTV0bGV6eTZpWG90ZkZrOVZFUytKem1kODVuaVlKelgzc1F3UUwxQTlBQUs3&w=3840&q=75"
             
-              class="w-full h-48 object-cover">
+             class="w-full h-48 object-cover">
         <div class="p-6">
             <span class="text-xs font-semibold text-blue-600 mb-1 block">26 September 2025</span>
             <h3 class="text-xl font-bold text-gray-900 mb-2">Kecamatan Cibuaya Dalam Angka 2025</h3>
@@ -337,7 +352,7 @@
             <article class="bg-white rounded-xl shadow-lg border border-gray-100 card-hover overflow-hidden">
         <img src="https://img.inews.co.id/media/600/files/networks/2025/09/12/cc90c_banjir-rob.jpeg"
             
-              class="w-full h-48 object-cover">
+             class="w-full h-48 object-cover">
         <div class="p-6">
             <span class="text-xs font-semibold text-blue-600 mb-1 block">12 September 2025</span>
             <h3 class="text-xl font-bold text-gray-900 mb-2">Dilanda Banjir Rob, Siswa SMPN Satap 1 Cibuaya Bertaruh Nyawa Untuk Sekolah</h3>
@@ -458,7 +473,15 @@
                 <button onclick="filterPegawai('semua')" data-kategori="semua" class="filter-btn bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                     Semua Pegawai
                 </button>
-             
+                <button onclick="filterPegawai('pns')" data-kategori="pns" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                    PNS
+                </button>
+                <button onclick="filterPegawai('honorer')" data-kategori="honorer" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                    Honorer
+                </button>
+                <button onclick="filterPegawai('kontrak')" data-kategori="kontrak" class="filter-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                    Kontrak
+                </button>
 
             <div id="pegawai-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <div class="pegawai-card bg-white border border-gray-200 rounded-lg p-4 card-hover" data-kategori="pns">
@@ -477,7 +500,7 @@
                     </div>
                     <h3 class="font-semibold text-gray-900 text-center mb-1">Usman Apandi, SM</h3>
                     <p class="text-blue-600 text-sm text-center mb-1">Bendahara Pengeluaran</p>
-            
+                    
                     <p class="text-gray-600 text-xs text-center">NIP: 197709162009011003</p>
                 </div>
 
@@ -486,8 +509,8 @@
                         <span class="text-white">👨‍💻</span>
                     </div>
                     <h3 class="font-semibold text-gray-900 text-center mb-1">Januar Ibrahim, S.I.P</h3>
-		    <p class="text-orange-600 text-sm text-center mb-1">Staff Kasi Pem</p>
-                    <p class="text-blue-600 text-sm text-center mb-1">Penata Kelola Pemerintahan</p>
+                    <p class="text-orange-600 text-sm text-center mb-1">Staff Kasi Pem</p>
+                    <p class="text-gray-500 text-xs text-center mb-2">Penata Kelola Pemerintahan</p>
                     
                     <p class="text-gray-600 text-xs text-center">NIP: 199701292025051004</p>
                 </div>
@@ -496,7 +519,7 @@
                     <div class="w-12 h-12 bg-purple-500 rounded-full mx-auto mb-3 flex items-center justify-center">
                         <span class="text-white">👩‍⚖</span>
                     </div>
-		    <h3 class="font-semibold text-gray-900 text-center mb-1">Putri Amalia, S.Kom</h3>
+                    <h3 class="font-semibold text-gray-900 text-center mb-1">Putri Amalia, S.Kom</h3>
                     <p class="text-orange-600 text-sm text-center mb-1">Staff Kasubag UPP</p>
                     <p class="text-gray-500 text-xs text-center mb-2">Penata Kelola Sistem & TI</p>
                     <p class="text-gray-600 text-xs text-center">NIP: 199807142025052005</p>
@@ -653,9 +676,6 @@
         WhatsApp
     </a>
 </div>
-    </a>
-</div>
-
 
 
 <script>
@@ -699,11 +719,12 @@
                     // 1. Tutup menu utama mobile
                     mobileMenu.classList.add('hidden');
                     
-                    // 2. Tutup juga dropdown AlpineJS (Layanan) jika link diklik dari dalamnya
+                    // 2. Tutup juga dropdown AlpineJS (Layanan atau Profil) jika link diklik dari dalamnya
                     // Cari elemen terdekat yang memiliki data AlpineJS (x-data)
                     const alpineDropdownContainer = this.closest('[x-data]'); 
                     
                     // Cek apakah AlpineJS sudah diinisialisasi pada elemen tersebut dan memiliki properti 'open'
+                    // Menggunakan alpineDropdownContainer.__x (Cara AlpineJS V3)
                     if (alpineDropdownContainer && alpineDropdownContainer.__x) {
                         // Secara manual set variabel 'open' AlpineJS menjadi false
                         alpineDropdownContainer.__x.$data.open = false; 
@@ -782,10 +803,8 @@
     document.addEventListener('scroll', handleScroll);
     scrollToTopBtn.addEventListener('click', scrollToTop);
 </script>
-
-</script>
 </body>
 </html>
 <p class="text-center text-black-300">
-    Copyright © 2025 - Kecamatan Cibuaya - All Rights Reserved
+    Copyright © 2025 Amalia
 </p>
